@@ -1,0 +1,91 @@
+import time
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
+import os
+
+options = webdriver.ChromeOptions()
+options.add_experimental_option("detach", True)
+driver = webdriver.Chrome(options=options, service=ChromeService(ChromeDriverManager().install()))
+driver.maximize_window()
+driver.get("https://staging-crm.buyani.com/lehoa/Account/Register?type=1")
+
+#Variables
+member_firstname = "Jose"
+member_middlename = "010524"
+member_lastname = "Member"
+member_emailadress = (f"{member_firstname}{member_middlename}@cumbriaridge.com")
+member_phonenumber = "09394459929"
+
+#Basic Information
+firstname = driver.find_element("xpath", '/html/body/div[2]/form/div/div[1]/div[1]/div[1]/div[1]/div/div[2]/input')
+firstname.send_keys(member_firstname)
+middlename = driver.find_element("xpath", '/html/body/div[2]/form/div/div[1]/div[1]/div[1]/div[1]/div/div[3]/input')
+middlename.send_keys(member_middlename)
+lastname = driver.find_element("xpath", '/html/body/div[2]/form/div/div[1]/div[1]/div[1]/div[1]/div/div[4]/input')
+lastname.send_keys(member_lastname)
+birthday = driver.find_element("xpath", '/html/body/div[2]/form/div/div[1]/div[1]/div[1]/div[1]/div/div[5]/input')
+birthday.click()
+time.sleep(2)
+birthday_year = driver.find_element("xpath", '/html/body/div[7]/div[1]/table/thead/tr[2]/th[2]')
+birthday_year.click()
+birthday_year_1 = driver.find_element("xpath", '/html/body/div[7]/div[2]/table/thead/tr[2]/th[2]')
+birthday_year_1.click()
+time.sleep(1)
+birthday_year_previous = driver.find_element("xpath", '/html/body/div[7]/div[3]/table/thead/tr[2]/th[1]')
+birthday_year_previous.click()
+time.sleep(1)
+birthday_year_final = driver.find_element("xpath", '/html/body/div[7]/div[3]/table/tbody/tr/td/span[2]')
+birthday_year_final.click()
+time.sleep(1)
+birthday_month = driver.find_element("xpath", '/html/body/div[7]/div[2]/table/tbody/tr/td/span[8]')
+birthday_month.click()
+time.sleep(1)
+birthday_date = driver.find_element("xpath", '/html/body/div[7]/div[1]/table/tbody/tr[5]/td[3]')
+birthday_date.click()
+gender = driver.find_element("xpath", '/html/body/div[2]/form/div/div[1]/div[1]/div[1]/div[1]/div/div[6]/select/option[2]')
+gender.click()
+villagetype = driver.find_element("xpath", '/html/body/div[2]/form/div/div[1]/div[1]/div[1]/div[2]/div/div[1]/select/option[6]')
+villagetype.click()
+time.sleep(1)
+village = driver.find_element("xpath", '/html/body/div[2]/form/div/div[1]/div[1]/div[1]/div[2]/div/div[2]/select/option[2]')
+village.click()
+time.sleep(1)
+block = driver.find_element("xpath", '/html/body/div[2]/form/div/div[1]/div[1]/div[1]/div[2]/div/div[3]/select/option[2]')
+block.click()
+time.sleep(1)
+lot = driver.find_element("xpath", '/html/body/div[2]/form/div/div[1]/div[1]/div[1]/div[2]/div/div[4]/select/option[3]')
+lot.click()
+emailaddress = driver.find_element("xpath", '/html/body/div[2]/form/div/div[1]/div[1]/div[1]/div[2]/div/div[5]/input')
+emailaddress.send_keys(member_emailadress)
+phonenumber = driver.find_element("xpath", '/html/body/div[2]/form/div/div[1]/div[1]/div[1]/div[2]/div/div[6]/input')
+phonenumber.send_keys(member_phonenumber)
+profilephoto = driver.find_element("xpath", '/html/body/div[2]/form/div/div[1]/div[1]/div[2]/input[1]')
+profilephoto.click()
+time.sleep(5)
+profilephoto_capture = driver.find_element("xpath", '/html/body/div[3]/div/div/div[3]/div/div[2]/div/button')
+profilephoto_capture.click()
+time.sleep(1)
+BasicInfo_Next = driver.find_element("xpath", '/html/body/div[2]/form/div/div[1]/div[2]/button')
+BasicInfo_Next.click()
+
+#Validation Documents
+IDtype = driver.find_element("xpath", '/html/body/div[2]/form/div/div[2]/div[1]/div[3]/div/div[2]/select/option[7]')
+IDtype.click()
+IDtype_capture = driver.find_element("xpath", '/html/body/div[2]/form/div/div[2]/div[1]/div[3]/div/div[4]/input')
+IDtype_capture.click()
+time.sleep(2)
+IDtype_capture_snap = driver.find_element("xpath", '/html/body/div[3]/div/div/div[3]/div/div[2]/div/button')
+IDtype_capture_snap.click()
+time.sleep(2)
+idtype_proof = driver.find_element("xpath", '/html/body/div[2]/form/div/div[2]/div[1]/div[4]/div/div[2]/input')
+idtype_proof.click()
+time.sleep(2)
+idtype_proof_capture = driver.find_element("xpath", '/html/body/div[3]/div/div/div[3]/div/div[2]/div/button')
+idtype_proof_capture.click()
+time.sleep(2)
+#document = driver.find_element("xpath", '/html/body/div[2]/form/div/div[2]/div[1]/div[7]/div/div[3]/input[2]')
+#document.click()
+#path = "C:\Users\Aubrey\Pictures\menportrait.jpg"
+#path = os.path.realpath(path)
+#os.startfile(path)
